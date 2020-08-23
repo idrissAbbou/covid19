@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>احصائيات انتشار وباء كورونا المستجد</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="search-tool">
+            <input type="text" name="country-name" id="country-name" placeholder="enter country name">
+            <input type="button" value="search" id="search">
+        </div>
+        <h1 class="country-name"></h1>
+        <div class="display-data">
+            <div class="boxes">
+                <p class="data-box">
+                    population
+                    <span class="population data"></span>
+                </p>
+                <p class="data-box">
+                    last update
+                    <span class="data last-update"></span>
+                </p>
+            </div>
+        </div>
+        <div class="display-data">
+            <h2 class="title">cases</h2>
+            <div class="boxes">
+                <p class="data-box">
+                    total cases
+                    <span class="total data"></span>
+                </p>
+                <p class="data-box">
+                    active
+                    <span class="active data"></span>
+                </p>
+                <p class="data-box">
+                    new
+                    <span class="new data"></span>
+                </p>
+                <p class="data-box">
+                    critical
+                    <span class="critical data"></span>
+                </p>
+            </div>
+        </div>
+        <div class="display-data">
+            <h2 class="title">deaths</h2>
+            <div class="boxes">
+                <p class="data-box color-red">
+                    total deaths
+                    <span class="total-death data color-red"></span>
+                </p>
+                <p class="data-box">
+                    new
+                    <span class="new-death data"></span>
+                </p>
+            </div>
+        </div>
+        <div class="display-data">
+            <h2 class="title">tests</h2>
+            <div class="boxes">
+                <p class="data-box ">
+                    total tests
+                    <span class="total-tests data"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

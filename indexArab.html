@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>احصائيات انتشار وباء كورونا المستجد</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="search-tool">
+            <input type="text" name="country-name" id="country-name" placeholder="enter country name">
+            <input type="button" value="بحث" id="search">
+        </div>
+        <h1 class="country-name"></h1>
+        <div class="display-data">
+            <div class="boxes">
+                <p class="data-box">
+                    تعداد الساكنة
+                    <span class="population data"></span>
+                </p>
+                <p class="data-box">
+                    اخر تحديث
+                    <span class="data last-update"></span>
+                </p>
+            </div>
+        </div>
+        <div class="display-data">
+            <h2 class="title">الحالات</h2>
+            <div class="boxes">
+                <p class="data-box">
+                    اجمالي الحالات
+                    <span class="total data"></span>
+                </p>
+                <p class="data-box">
+                    النشطة
+                    <span class="active data"></span>
+                </p>
+                <p class="data-box">
+                    الجديدة
+                    <span class="new data"></span>
+                </p>
+                <p class="data-box">
+                    الحرجة
+                    <span class="critical data"></span>
+                </p>
+            </div>
+        </div>
+        <div class="display-data">
+            <h2 class="title">الوفايات</h2>
+            <div class="boxes">
+                <p class="data-box color-red">
+                    الحصيلة
+                    <span class="total-death data color-red"></span>
+                </p>
+                <p class="data-box">
+                    وفايات جديدة
+                    <span class="new-death data"></span>
+                </p>
+            </div>
+        </div>
+        <div class="display-data">
+            <h2 class="title">التحاليل</h2>
+            <div class="boxes">
+                <p class="data-box ">
+                    العدد الاجمالي للتحاليل التي تم القيام بها
+                    <span class="total-tests data"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
