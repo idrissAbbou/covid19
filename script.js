@@ -44,7 +44,7 @@ const lastUpdate = document.querySelector(".last-update");
 btn.addEventListener("click", function () {
   const cn =
     countryName.value.charAt(0).toUpperCase() + countryName.value.slice(1);
-  const countryData = covidStatus.findCountryData("Morocco");
+  const countryData = covidStatus.findCountryData(cn);
   displayData(countryData);
 });
 
