@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
     <title>احصائيات انتشار وباء كورونا المستجد</title>
 </head>
 
 <body>
     <div class="container">
         <div class="search-tool">
-            <input type="text" name="country-name" id="country-name" placeholder="enter country name">
-            <input type="button" value="search" id="search">
+            <input type="text" name="country-name" id="country-name" placeholder="enter country name" />
+            <input type="button" value="search" id="search" />
         </div>
         <h1 class="country-name"></h1>
         <div class="display-data">
@@ -65,13 +65,33 @@
         <div class="display-data">
             <h2 class="title">tests</h2>
             <div class="boxes">
-                <p class="data-box ">
+                <p class="data-box">
                     total tests
                     <span class="total-tests data"></span>
                 </p>
             </div>
         </div>
+        <div id="curve_chart" class="chart" style="height: 500px;"></div>
+
+        <div class="timeLine">
+            <h2 class="title show_table">cases timeline</h2>
+
+            <div class="timelineTable">
+                <table class="dataTable">
+                    <tr>
+                        <th>date</th>
+                        <th>new cases</th>
+                        <th>new death</th>
+                        <th>total cases</th>
+                        <th>total recoveries</th>
+                        <th>total deaths</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
     <script src="./script.js"></script>
 </body>
 

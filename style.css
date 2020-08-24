@@ -85,3 +85,44 @@ body {
     display: inline-block;
     margin-top: 8px;
 }
+
+.dataTable {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: table;
+}
+
+.dataTable th {
+    background: black;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.dataTable tr td {
+    border-bottom: 1px solid white;
+    text-align: center;
+    padding: 6px 0;
+}
+
+.dataTable tr td:hover {
+    border-bottom: 1px solid white;
+    color: black;
+    background-color: white;
+}
+
+.chart {
+    margin-bottom: 2rem;
+}
+
+.show_table {
+    cursor: pointer;
+    background: black;
+    padding: 20px 20px;
+    border-radius: 20px;
+}
