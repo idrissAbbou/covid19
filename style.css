@@ -86,9 +86,14 @@ body {
     margin-top: 8px;
 }
 
-.dataTable {
+.timelineTable {
     width: 100%;
     overflow: scroll;
+}
+
+.dataTable {
+    width: 100%;
+
 }
 
 .hidden {
