@@ -10,6 +10,11 @@
     color: #ee2b47;
 }
 
+.switch_language {
+    font-weight: bold;
+    margin-left: 1.5rem;
+}
+
 body {
     display: flex;
     justify-content: center;
