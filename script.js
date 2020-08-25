@@ -2,6 +2,16 @@ class CovidStatus {
   constructor() {
     this.contries = null;
     this.timeLine = null;
+    this.countiesCode = null;
+    this.arr = null;
+  }
+
+  async loadCountriesCodes() {
+    const api = await fetch('https://restcountries.eu/rest/v2/all', {
+      method: 'GET'
+    });
+    const json = await api.json();
+    this.countiesCode = json;
   }
 
   async loadData() {
@@ -17,9 +27,9 @@ class CovidStatus {
     this.contries = json.response;
   }
 
-  async loadCountryTimeLine() {
+  async loadCountryTimeLine(code) {
     const api = await fetch(
-      "https://api.thevirustracker.com/free-api?countryTimeline=MA", {
+      "https://api.thevirustracker.com/free-api?countryTimeline=" + code, {
         method: "GET",
       }
     );
@@ -42,9 +52,11 @@ const covidStatus = new CovidStatus();
 //show morocco status
 (async () => {
   await covidStatus.loadData();
-  const cn = covidStatus.findCountryData("Morocco");
+  const cn = covidStatus.findCountryData(countryName.value);
   displayData(cn);
-  displayTimeLineTable(await covidStatus.loadCountryTimeLine());
+  await covidStatus.loadCountriesCodes();
+  const code = covidStatus.countiesCode.filter(n => n.name == countryName.value)[0].alpha2Code;
+  displayTimeLineTable(await covidStatus.loadCountryTimeLine(code));
 })();
 
 //get dom elements
@@ -60,18 +72,25 @@ const totalTests = document.querySelector(".total-tests");
 const population = document.querySelector(".population");
 const lastUpdate = document.querySelector(".last-update");
 
-btn.addEventListener("click", function () {
+btn.addEventListener("click", async function () {
   const cn =
     countryName.value.charAt(0).toUpperCase() + countryName.value.slice(1);
   const countryData = covidStatus.findCountryData(cn);
   displayData(countryData);
-  displayTimeLineTable(covidStatus.loadCountryTimeLine());
+
+  //find country code
+  const code = covidStatus.countiesCode.filter(n => n.name == cn)[0].alpha2Code;
+  const data = await covidStatus.loadCountryTimeLine(code);
+  displayTimeLineTable(data);
+  drawChart();
+
 });
 
+//click btn to show the table of data
 document.querySelector(".show_table").addEventListener("click", function (e) {
-  const table = document.querySelector(".dataTable");
-  table.classList.toggle('hidden');
-  table.classList.toggle('show');
+  // const table = document.querySelector(".dataTable");
+  // table.classList.toggle('hidden');
+  // table.classList.toggle('show');
 
 });
 
@@ -90,7 +109,17 @@ function displayData(countryData) {
 }
 
 function displayTimeLineTable(jsonData) {
+  //get the table from the dom
   const timelineTable = document.querySelector(".dataTable");
+
+  //delete all data from the table
+  while (timelineTable.hasChildNodes() && timelineTable.children.length > 1) {
+    timelineTable.removeChild(timelineTable.lastChild);
+  }
+
+
+
+  //insert data into the table
   for (let date in jsonData) {
     if (!jsonData.hasOwnProperty(date) || date == "stat") continue;
 
@@ -121,18 +150,11 @@ function displayTimeLineTable(jsonData) {
 google.charts.load("current", {
   packages: ["corechart"]
 });
+
 google.charts.setOnLoadCallback(drawChart);
 
 async function drawChart() {
-  const arr = [];
-  const timeLine = await covidStatus.loadCountryTimeLine();
-  arr.push(["date", "total cases", "total deaths"]);
-  for (let key in timeLine) {
-    const cases = timeLine[key].total_cases;
-    const deaths = timeLine[key].total_deaths;
-    const val = [key, cases, deaths];
-    arr.push(val);
-  }
+  const arr = await pushTimeLineDataIntoTheGraphArray();
 
   var data = google.visualization.arrayToDataTable(arr);
 
@@ -151,35 +173,19 @@ async function drawChart() {
   chart.draw(data, options);
 }
 
-google.charts.load("current", {
-  packages: ["corechart"]
-});
-google.charts.setOnLoadCallback(drawChart);
-
-async function drawChart() {
+async function pushTimeLineDataIntoTheGraphArray() {
   const arr = [];
-  const timeLine = await covidStatus.loadCountryTimeLine();
-  arr.push(["date", "ااجمالي الحالات", "اجمالي الوفايات"]);
+  await covidStatus.loadCountriesCodes();
+  const cn =
+    countryName.value.charAt(0).toUpperCase() + countryName.value.slice(1);
+  const code = covidStatus.countiesCode.filter(n => n.name == cn)[0].alpha2Code;
+  const timeLine = await covidStatus.loadCountryTimeLine(code);
+  arr.push(["date", "total cases", "total deaths"]);
   for (let key in timeLine) {
     const cases = timeLine[key].total_cases;
     const deaths = timeLine[key].total_deaths;
     const val = [key, cases, deaths];
     arr.push(val);
   }
-
-  var data = google.visualization.arrayToDataTable(arr);
-
-  var options = {
-    title: "العدد الاجمالي للحالات و الوفايات",
-    legend: {
-      position: "right"
-    },
-    colors: ["black", "red"],
-  };
-
-  var chart = new google.visualization.LineChart(
-    document.getElementById("curve_chart_arab")
-  );
-
-  chart.draw(data, options);
+  return arr;
 }

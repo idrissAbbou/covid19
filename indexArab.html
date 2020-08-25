@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <div class="search-tool">
-            <input type="text" name="country-name" id="country-name" placeholder="enter country name">
+            <input type="text" name="country-name" value="Morocco" id="country-name" placeholder="enter country name">
             <input type="button" value="بحث" id="search">
         </div>
         <h1 class="country-name"></h1>
@@ -77,22 +77,25 @@
             <h2 class="title show_table">جدول تطور الحالة الوبائية</h2>
 
             <div class="timelineTable">
-                <table class="dataTable hidden">
-                    <tr>
+                <table class="dataTable">
+                    <thead>
+                        <tr>
 
-                        <th>التاريخ</th>
-                        <th>الحالات المستجدة</th>
-                        <th>الوفايات المستجدة</th>
-                        <th>العدد الاجمالي للحالات</th>
-                        <th>المتعافون</th>
-                        <th>العدد الاجمالي للوفايات</th>
-                    </tr>
+                            <th>التاريخ</th>
+                            <th>الحالات المستجدة</th>
+                            <th>الوفايات المستجدة</th>
+                            <th>العدد الاجمالي للحالات</th>
+                            <th>المتعافون</th>
+                            <th>العدد الاجمالي للوفايات</th>
+                        </tr>
+                    </thead>
+
                 </table>
             </div>
         </div>
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="./script.js"></script>
+    <script src="./scriptAr.js"></script>
 </body>
 
 </html>
